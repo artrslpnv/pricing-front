@@ -49,7 +49,7 @@ function App() {
 
   const getGraphData = () => {
     const today = new Date()
-    today.setDate(today.getDate()-2)
+    today.setDate(today.getDate()-3)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("POST", "http://127.0.0.1:5000/predict_prices", true);
     xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*")
@@ -67,13 +67,20 @@ function App() {
     xmlHttp.onload = () => {
       let responseData = JSON.parse(xmlHttp.response)
       let newData = []
-      for (let i = 0; i < responseData.days.length; i++) {
-        newData.unshift({
-          name: responseData.days[i],
-          prediction: responseData.prices[i],
-          realPrices: responseData.real_prices[i],
+
+      let days = responseData.days.reverse()
+      let predictions = responseData.prices.reverse()
+      let real = responseData.real_prices.reverse()
+
+      for (let i = 0; i < days.length; i++) {
+        newData.push({
+          name: days[i],
+          prediction: predictions[i],
+          realPrices: i < real.length ? real[i]: 0,
         },)
       }
+
+      console.log(newData)
       setData(newData)
     }
   }
