@@ -49,7 +49,7 @@ function App() {
 
   const getGraphData = () => {
     const today = new Date()
-    today.setDate(today.getDate()-3)
+    today.setDate(today.getDate()-7)
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("POST", "http://127.0.0.1:5000/predict_prices", true);
     xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*")
