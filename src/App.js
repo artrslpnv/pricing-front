@@ -57,8 +57,8 @@ function App() {
     xmlHttp.send(JSON.stringify({
       "origin" : origin,
       "destination": destination,
-      "date": `${today.getDate()}.${today.getMonth()}.${today.getFullYear().toString().slice(2,)}`,
-      "flight_date": `${departureDate.getDate()}.${departureDate.getMonth()}.${departureDate.getFullYear().toString().slice(2,)}`,
+      "date": `${today.getDate()}.${today.getMonth()+1}.${today.getFullYear().toString().slice(2,)}`,
+      "flight_date": `${departureDate.getDate()}.${departureDate.getMonth()+1}.${departureDate.getFullYear().toString().slice(2,)}`,
     }));
 
     xmlHttp.onerror = () =>{
